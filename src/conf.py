@@ -109,10 +109,10 @@ THUMBNAIL_SIZE = 180
 ##############################################################################
 
 # Data about this site
-BLOG_TITLE = "Demo Site"
-BLOG_URL = "http://nikola-generator.googlecode.com"
-BLOG_EMAIL = "joe@demo.site"
-BLOG_DESCRIPTION = "This is a demo site for Nikola."
+BLOG_TITLE = "Example Lab"
+BLOG_URL = "http://hugoruscitti.github.com"
+BLOG_EMAIL = "hugoruscitti@gmail.com"
+BLOG_DESCRIPTION = "El sitio de recetas de Hugo Ruscitti."
 
 # Name of the theme to use. Themes are located in themes/theme_name
 THEME = 'site'
@@ -131,7 +131,7 @@ LICENSE = """
     src="http://i.creativecommons.org/l/by-nc-sa/2.5/ar/88x31.png"></a>"""
 
 # A small copyright notice for the page footer
-CONTENT_FOOTER = u"Contents © 2012 Roberto Alsina <ralsina@kde.org>"
+CONTENT_FOOTER = u";)"
 
 # To enable comments via Disqus, you need to create a forum at
 # http://disqus.com, and set DISQUS_FORUM to the short name you selected.
