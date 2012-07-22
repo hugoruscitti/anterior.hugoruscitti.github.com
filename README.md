@@ -1,4 +1,4 @@
 hugoruscitti.github.com
 =======================
 
-Sitio personal de hugoruscitti
+Sitio web personal de hugoruscitti realizado con nikola.
