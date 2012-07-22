@@ -115,7 +115,7 @@ BLOG_EMAIL = "hugoruscitti@gmail.com"
 BLOG_DESCRIPTION = "El sitio de recetas de Hugo Ruscitti."
 
 # Name of the theme to use. Themes are located in themes/theme_name
-THEME = 'site'
+THEME = 'examplelab'
 
 # Name of the template engie to use. Usually this is theme dependent
 # and you probably don't want to touch it. Supported values are
@@ -190,9 +190,6 @@ GLOBAL_CONTEXT = {
         'en': (
             ('/archive.html', 'Archives'),
             ('/categories/index.html', 'Tags'),
-            ('/stories/about-nikola.html', 'About Nikola'),
-            ('/stories/handbook.html', 'The Nikola Handbook'),
-            ('http://nikola.ralsina.com.ar', 'Powered by Nikola!'),
             )
         }
     }
