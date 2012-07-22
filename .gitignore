@@ -1,5 +1,6 @@
 .DS_Store
-src/*.pyc
+*.pyc
 *doit.db.db
-*.html
 tmp
+
+categories/*

@@ -19,6 +19,6 @@ DOIT_CONFIG = {
 site = Nikola(**conf.__dict__)
 def task_render_site():
     return site.gen_tasks()
-    
+
 if __name__ == "__main__":
     _nikola_main()

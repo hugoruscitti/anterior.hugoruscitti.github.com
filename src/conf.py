@@ -136,7 +136,8 @@ CONTENT_FOOTER = u";)"
 # To enable comments via Disqus, you need to create a forum at
 # http://disqus.com, and set DISQUS_FORUM to the short name you selected.
 # If you want to disable comments, set it to False.
-DISQUS_FORUM = "nikolademo"
+#DISQUS_FORUM = "nikolademo"
+DISQUS_FORUM = False
 
 # RSS_LINK is a HTML fragment to link the RSS or Atom feeds. If set to None,
 # the base.tmpl will use the feed Nikola generates. However, you may want to
@@ -188,8 +189,10 @@ GLOBAL_CONTEXT = {
     # Locale-dependent links for the sidebar
     'sidebar_links': {
         'en': (
+            ('/index.html', 'Principal'),
             ('/archive.html', 'Archives'),
             ('/categories/index.html', 'Tags'),
+            ('/stories/acerca-de.html', 'Acerca de...'),
             )
         }
     }
