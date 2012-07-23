@@ -1,9 +1,0 @@
-Jinja==1.2
-MacFSEvents==0.2.8
-Mako==0.7.1
-Markdown==2.2.0
-MarkupSafe==0.15
-Nikola==3.1
-docutils==0.9.1
-doit==0.16.1
-wsgiref==0.1.2

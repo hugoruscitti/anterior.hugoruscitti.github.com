@@ -1,2 +1,0 @@
-.. image:: ../images/acerca-de/pipi.png
-
