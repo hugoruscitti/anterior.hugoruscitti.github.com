@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Jekyll Bootstrap</title>
- <link href="http://username.github.com/atom.xml" rel="self"/>
- <link href="http://username.github.com"/>
- <updated>2012-07-22T23:40:21-03:00</updated>
- <id>http://username.github.com</id>
+ <title>ExampleLab</title>
+ <link href="http://hugoruscitti.github.com/atom.xml" rel="self"/>
+ <link href="http://hugoruscitti.github.com"/>
+ <updated>2012-07-22T23:51:16-03:00</updated>
+ <id>http://hugoruscitti.github.com</id>
  <author>
-   <name>Name Lastname</name>
-   <email>blah@email.test</email>
+   <name>Hugo Ruscitti</name>
+   <email>hugoruscitti@gmail.com</email>
  </author>
 
  
  <entry>
+   <title>usando jekyll</title>
+   <link href="http://hugoruscitti.github.com/2012/07/22/usando-jekyll"/>
+   <updated>2012-07-22T00:00:00-03:00</updated>
+   <id>http://hugoruscitti.github.com/2012/07/22/usando-jekyll</id>
+   <content type="html"></content>
+ </entry>
+ 
+ <entry>
    <title>Jekyll Introduction</title>
-   <link href="http://username.github.com/lessons/2011/12/29/jekyll-introduction"/>
+   <link href="http://hugoruscitti.github.com/lessons/2011/12/29/jekyll-introduction"/>
    <updated>2011-12-29T00:00:00-03:00</updated>
-   <id>http://username.github.com/lessons/2011/12/29/jekyll-introduction</id>
+   <id>http://hugoruscitti.github.com/lessons/2011/12/29/jekyll-introduction</id>
    <content type="html">&lt;p&gt;This Jekyll introduction will outline specifically what Jekyll is and why you would want to use it. Directly following the intro we&amp;#8217;ll learn exactly &lt;em&gt;how&lt;/em&gt; Jekyll does what it does.&lt;/p&gt;
 
 &lt;h2 id='overview'&gt;Overview&lt;/h2&gt;
@@ -335,14 +343,6 @@ tags : [how-to, jekyll]
 &lt;h2 id='next_steps'&gt;Next Steps&lt;/h2&gt;
 
 &lt;p&gt;Please take a look at &lt;a href='' /&gt; or jump right into &lt;a href=''&gt;Usage&lt;/a&gt; if you&amp;#8217;d like.&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>Why Every Programmer Should Play Nethack</title>
-   <link href="http://username.github.com/a/2007/10/29/why-every-programmer-should-play-nethack"/>
-   <updated>2007-10-29T00:00:00-03:00</updated>
-   <id>http://username.github.com/a/2007/10/29/why-every-programmer-should-play-nethack</id>
-   <content type="html">&lt;h1 id='hola'&gt;Hola&lt;/h1&gt;</content>
  </entry>
  
  
