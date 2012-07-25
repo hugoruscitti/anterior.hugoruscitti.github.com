@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "usando jekyll"
+title: "Usando jekyll"
 description: ""
 category: 
-tags: []
+tags: [uno, dos]
 ---
 {% include JB/setup %}

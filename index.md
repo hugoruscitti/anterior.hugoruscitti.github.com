@@ -1,7 +1,6 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Bienvenido
 ---
 {% include JB/setup %}
 
@@ -11,25 +10,23 @@ Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllb
 
 ## Update Author Attributes
 
-In `_config.yml` remember to specify your own data:
-    
-    title : My Blog =)
-    
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
 
 The theme should reference these variables whenever needed.
-    
+
+
+{% highlight ruby %}
+def foo
+  puts 'foo'
+end
+
+{% endhighlight %}
+
 ## Sample Posts
 
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
 
-    $ rm -rf _posts/core-samples
+    asdasd
 
+asdasds
 Here's a sample "posts list".
 
 <ul class="posts">
