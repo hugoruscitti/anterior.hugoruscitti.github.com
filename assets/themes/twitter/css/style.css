@@ -68,3 +68,21 @@ footer {
     color: gray;
 }
 
+
+li.active {
+    font-weight: bold;
+}
+
+ul.nav {
+    font-size: 16px;
+}
+
+    ul.nav li {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    ul.nav li a:hover {
+        background-color: white;
+        text-decoration: underline;
+    }
