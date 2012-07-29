@@ -9,6 +9,12 @@
 
 <div class="row">
   <div class="span12">
+    {% if page.draft %}
+        <div class="alert alert-info">
+            <strong>Ten en cuenta:</strong> este artículo está en construcción, en fase borrador (<em>draft:true</em>).
+        </div>
+    {% endif %}
+
     {{ content }}
 
     <div class="pagination">
