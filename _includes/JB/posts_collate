@@ -26,6 +26,10 @@ Usage:
     {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
     {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
   
+    {% if forloop.first %}
+        <ul>
+    {% endif %}
+  
   
     <li><div><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a> <span style='color: gray; float: right'>{{ post.date | date: "%B %e, %Y" }}</span></div></li>
   

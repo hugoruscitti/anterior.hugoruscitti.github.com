@@ -115,3 +115,11 @@ body {
 li {
     line-height: 25px;
 }
+
+div.titulo_tag {
+    margin-left: -10px; 
+    color: gray; 
+    margin-bottom: 0.5em; 
+    margin-top: 1em; 
+    font-size: small;
+}
