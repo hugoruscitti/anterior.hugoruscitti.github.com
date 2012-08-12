@@ -123,3 +123,8 @@ div.titulo_tag {
     margin-top: 1em; 
     font-size: small;
 }
+
+.content img {
+    margin: auto;
+    display: block;
+}
