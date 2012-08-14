@@ -76,6 +76,16 @@
         <ul class="tag_box inline">
           {% assign tags_list = site.tags %}  
           {% include JB/tags_list %}
+
+          
+          <script>
+            $(".tag_box a").click(function(){
+              var elemento = this.href.match(/(#.+)/)[1];
+              $(elemento).parent().effect("highlight", 2000);
+            });
+          </script>
+
+
         </ul>
       </div>
     </div> <!-- fin cuerpo -->
