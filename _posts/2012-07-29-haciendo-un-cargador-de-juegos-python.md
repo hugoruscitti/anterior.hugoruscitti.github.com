@@ -10,14 +10,18 @@ draft: true
 
 Si escribes juegos usando python, seguramente te has encontrado en problemas al distribuir juegos sobre windows.
 
-Python es un gran lenguaje, pero es algo difícil empaquetar programas para sistemas cómo Windows. Y no es una buena llevar todo el problema a los usuarios, mucho menos pedirles que instalen varias bibliotecas para que puedan probar nuestros juegos.
+Python es un gran lenguaje, pero cuando se utiliza con varias bibliotecas
+sobre Windows termina siendo algo difícil de transportar de un equipo a otro, y si quieres
+presentar tus juegos a muchas personas eso termina convirtiendose en un problema.
 
-En este artículo veremos una alternativa para empaquetar y distribuir nuestros juegos sobre windows. Usaremos el concepto de **Cargador de juegos** y lo veremos paso a paso con varios ejemplos.
+En este artículo veremos una alternativa para empaquetar y distribuir nuestros juegos sobre windows de
+manera bastante sencilla, crearemos varios cargadores de juegos para bibliotecas de juegos como *pygame*, *cocos2d* y
+*pilas*.
 
 
 ## Un adelanto para impacientes
 
-Si quieres usar cargadores, pero no seguir paso a paso estas instrucciones, ve a la página de github de este proyecto y descarga una versión lista para utilizar:
+Si quieres usar cargadores, pero no seguir paso a paso estas instrucciones, ve a la página de github de este proyecto y descarga las versiones listas para utilizar:
 
 - [Descargar los cargadores de juegos desde github][github_download]
 - [Ver código de los cargadores en github][github]
@@ -25,18 +29,19 @@ Si quieres usar cargadores, pero no seguir paso a paso estas instrucciones, ve a
 [github]: https://github.com/hugoruscitti/cargador_de_juegos
 [github_download]: https://github.com/hugoruscitti/cargador_de_juegos/downloads
 
-
 ## ¿Que es un cargador de juegos?
 
 Un cargador de juegos es un archivo ejecutable `.exe` que incluye un intérprete de python y todas las bibliotecas necesarias para ejecutar juegos.
 
-Este intérprete es independiente del juego, lo unico que sabe hacer es *"ejecutar un archivo .py"*, así que los cargadores se hacen una sola vez y luego se comparten.
+Este intérprete es independiente del juego, lo unico que sabe hacer es *"ejecutar un archivo .py"*, así que los cargadores se hacen una sola vez y luego se comparten, ya sea entre proyectos o entre programadores.
 
-Entonces, lo interesante de un cargador, es que podemos entregarlo a nuestros usuarios junto al código de nuestro juego y listo.
+Entonces, lo interesante de un cargador, es que podemos entregarlo a nuestros usuarios junto al código de
+nuestro juego y listo, van a poder jugar sin necesidad de configurar o instalar nada mas...
 
 ## Comenzando
 
-Para iniciar, vamos a contar con un sistema windows recién instalado.
+Para iniciar, vamos a comenzar con un sistema windows que no tiene python ni otras
+bibliotecas instaladas, solo para comenzar desde el principio.
 
 Mi recomendación es que utilices [virtual box], así todo tu entorno permanece independiente de las pruebas que realicemos.
 
@@ -55,11 +60,13 @@ Asegurate de instalar python en el directorio `c:\Python26`:
 
 ![](/images/cargador_de_juegos/instala_python.png)
 
-
 Luego tendríamos que instalar `cx-freeze` para la versión `2.6`. El sitio de descargas es:
 
 <http://cx-freeze.sourceforge.net>
 
+
+Ten en cuenta que aquí estoy usando python *2.6*, aunque las mismas instrucciones podrían
+funcionar con versiones mas nuevas también.
 
 
 ## Creando el cargador básico
@@ -175,11 +182,42 @@ Puedes verlo con mas detalle en [github][github_pygame].
 
 [github_pygame]: https://github.com/hugoruscitti/cargador_de_juegos/tree/master/cargador_pygame
 
+## Versión 3: con soporte para Cocos2D
 
-## Versión con soporte para Cocos2D
+Para crear un cargador especial de Cocos2D necesitamos instalar pyglet
+y luego Cocos2D:
 
-    TODO:
+![](/images/cargador_de_juegos/pyglet.png)
+
+Una vez concluido el proceso de instalación, tendríamos que volver
+a editar el archivo cargador e incluir a cocos2d:
+
+
+Al menos en mi caso, fue necesatio instalar [setuptools] para concluir la instalación
+de cocos2d.
+
+[setuptools]: http://pypi.python.org/packages/2.6/s/setuptools/
+
+Y listo, una vez generado el cargador tenemos todo listo para ejecutarlo:
+
+![](/images/cargador_de_juegos/cocos2d.png)
+
 
 ## Version con soporte para pilas-engine
 
-    TODO:
+Siguiendo las instrucciones de instalación en windows: 
+
+
+Se tiene que crear un cargador que solamente haga import pilas al principio.
+
+Luego se tiene que hacer un arreglo en Box2D:
+
+Editar el archivo Box2D.py (c:\Python26\Lib\site-packages\Box2D), colocar
+el código
+
+    if version >= (2,6,0):
+          import _Box2D
+
+
+Y por último, poner el directorio data de pilas completamente dentro
+del cargador.
