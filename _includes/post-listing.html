@@ -1,0 +1,9 @@
+{% for post in posts limit: listing_limit %}
+  <h3><a href="{{ post.url }}" class="dark-link">{{ post.title }}</a> &nbsp; <small>{{ post.date | date_to_string }}</small></h3>
+  
+  <div style='margin-left: 2em'>
+  <p>{{ post.description }}</p>
+  </div>
+{% endfor %}
+
+<a href='/archive.html'>Ver todos los post</a>

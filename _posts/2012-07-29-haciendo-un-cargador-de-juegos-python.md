@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Haciendo un cargador de juegos python"
-description: ""
 category: 
+description: "Instrucciones para facilitar la publicación de juegos en windows."
 tags: [python, windows]
 draft: true
 ---
@@ -15,7 +15,7 @@ sobre Windows termina siendo algo difícil de transportar de un equipo a otro, y
 presentar tus juegos a muchas personas eso termina convirtiendose en un problema.
 
 En este artículo veremos una alternativa para empaquetar y distribuir nuestros juegos sobre windows de
-manera bastante sencilla, crearemos varios cargadores de juegos para bibliotecas de juegos como *pygame*, *cocos2d* y
+manera bastante sencilla, crearemos varios cargadores de juegos para bibliotecas como *pygame*, *cocos2d* y
 *pilas*.
 
 

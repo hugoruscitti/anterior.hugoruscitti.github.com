@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Como crear grillas de sprites con Gimp"
-description: ""
+description: "Instrucciones para crear animaciones en videojuegos."
 category: 
 tags: [juegos, gimp]
 draft: true

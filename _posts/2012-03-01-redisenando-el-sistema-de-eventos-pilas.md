@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Rediseñando los eventos de pilas-engine"
-description: ""
+description: "Un ejemplo de patrón observador."
 category: 
 tags: [python, pilas, sbfury]
 ---
