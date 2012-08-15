@@ -128,3 +128,10 @@ div.titulo_tag {
     margin: auto;
     display: block;
 }
+
+
+span.fecha {
+    font-size: small;
+    text-transform: uppercase;
+    color: #ccc;
+}
