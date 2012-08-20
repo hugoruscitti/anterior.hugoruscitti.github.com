@@ -4,7 +4,6 @@ title: "Haciendo un cargador de juegos python"
 category: 
 description: "Instrucciones para facilitar la publicación de juegos en windows."
 tags: [python, windows]
-draft: true
 ---
 {% include JB/setup %}
 
@@ -15,8 +14,8 @@ sobre Windows termina siendo algo difícil de transportar de un equipo a otro, y
 presentar tus juegos a muchas personas eso termina convirtiendose en un problema.
 
 En este artículo veremos una alternativa para empaquetar y distribuir nuestros juegos sobre windows de
-manera bastante sencilla, crearemos varios cargadores de juegos para bibliotecas como *pygame*, *cocos2d* y
-*pilas*.
+manera bastante sencilla, crearemos varios cargadores de juegos para bibliotecas como [pygame], [cocos2d] y
+[pilas-engine].
 
 
 ## Un adelanto para impacientes
@@ -73,21 +72,27 @@ funcionar con versiones mas nuevas también.
 
 Nuestro primer cargador solamente incluirá la biblioteca estándar de python y `Tkinter` para manejo de interfaz gráfica.
 
-Construye un archivo llamado ``setup.py`` y el siguiente contenido:
+Construye un archivo llamado ``cargador.py`` y el siguiente contenido:
 
 {% highlight python %}
 import tkMessageBox
 import Tkinter
 import imp
+import sys
+import os
+
+window = Tkinter.Tk()
+window.wm_withdraw()
+
+if not os.path.exists('run.py'):
+    tkMessageBox.showerror("Error", "No se encuentra el archivo run.py")
+    sys.exit(1)
 
 try:
     imp.load_source("__main__", "run.py")
-except IOError:
-    root = Tkinter.Tk()
-    root.withdraw()
+except Exception, e:
 
-    MENSAJE_ERROR = "Lo siento, no se encuentra el archivo run.py"
-    tkMessageBox.showerror("Error", MENSAJE_ERROR)
+    tkMessageBox.showerror("Error", e)
 {% endhighlight %}
 
 Este programa solamente va a buscar y ejecutar un archivo llamado `run.py`, y si no lo encuentra va a emitir un mensaje de error:
@@ -98,11 +103,9 @@ Este programa solamente va a buscar y ejecutar un archivo llamado `run.py`, y si
 
 ## Generando el archivo ejecutable
 
-Ahora solo nos queda *compilar* nuestro cargador para que se pueda ejecutar independiente de nuestro sistema.
+El siguiente paso es *compilar* nuestro cargador para que se pueda ejecutar de manera independiente.
 
-Tenemos que crear dos archivos.
-
-`setup.py`:
+Tenemos que crear dos archivos, `setup.py`:
 
 {% highlight python %}
 from cx_Freeze import setup
@@ -169,9 +172,9 @@ Listo, ahora solo hay que colocarlo en la carpeta `build` y ejecutar el nuevo ar
 
 Hasta ahora, tenemos lo principal del cargador de juegos. Aunque no incluye muchas bibliotecas que utilizamos para realizar videojuegos.
 
-Hagamos un pequeño cambio para agregar soporte a pygame.
+Hagamos un pequeño cambio para agregar soporte a [pygame].
 
-Primero tenemos de asegurarnos de tener instalada la biblioteca pygame, para nuestra versión de python (2.6) y luego tenemos que editar el archivo cargador y colocar en la primer linea lo siguiente:
+Primero tenemos de asegurarnos de tener instalada la biblioteca [pygame], para nuestra versión de python (2.6) y luego tenemos que editar el archivo cargador y colocar en la primer linea lo siguiente:
 
     import pygame
 
@@ -182,15 +185,17 @@ Puedes verlo con mas detalle en [github][github_pygame].
 
 [github_pygame]: https://github.com/hugoruscitti/cargador_de_juegos/tree/master/cargador_pygame
 
+[pygame]: http://www.pygame.org
+
 ## Versión 3: con soporte para Cocos2D
 
-Para crear un cargador especial de Cocos2D necesitamos instalar pyglet
-y luego Cocos2D:
+Para crear un cargador especial de [cocos2d] necesitamos instalar [pyglet]
+y luego [cocos2d]:
 
 ![](/images/cargador_de_juegos/pyglet.png)
 
 Una vez concluido el proceso de instalación, tendríamos que volver
-a editar el archivo cargador e incluir a cocos2d:
+a editar el archivo cargador e incluir a [cocos2d]:
 
 
     import cocos2d
@@ -201,6 +206,10 @@ Y listo, ahora solo queda ejecutar ``crear_ejecutable.bat`` y distribuir nuestro
 ![](/images/cargador_de_juegos/cocos2d.png)
 
 
+[cocos2d]: http://cocos2d.org
+[pyglet]: http://www.pyglet.org
+
+
 Puedes verlo con mas detalle en [github][github_cocos2d].
 
 [github_cocos2d]: https://github.com/hugoruscitti/cargador_de_juegos/tree/master/cargador_cocos2d
@@ -208,22 +217,43 @@ Puedes verlo con mas detalle en [github][github_cocos2d].
 
 ## Version con soporte para pilas-engine
 
-Siguiendo las instrucciones de instalación en windows: 
+Siguiendo las [instrucciones de instalación][install_pilas] para [pilas-engine] sobre windows, instalamos
+pyqt4, box2D y luego [pilas-engine].
 
-Se tiene que crear un cargador que solamente haga import pilas al principio.
+Es importante tener en cuenta que box2D necesita un [pequeño cambio][patch_box2d] como nos indicó barajas en el foro de losersjuegos.
 
-Luego se tiene que hacer un arreglo en Box2D:
+[patch_box2d]: http://www.losersjuegos.com.ar/foro/viewtopic.php?f=26&t=1526#p6985
 
-Editar el archivo Box2D.py (c:\Python26\Lib\site-packages\Box2D), colocar
-el código
+[pilas-engine]: http://www.pilas-engine.com.ar
 
-    if version >= (2,6,0):
-          import _Box2D
+[install_pilas]: http://pilas-engine.com.ar/doc/tutoriales/instalacion/windows_xp.rst
 
+Una vez concluido el proceso de instalación, tendríamos que volver
+a editar el archivo ``cargador.py`` e incluir a [pilas-engine]:
 
-Y por último, poner el directorio ``data`` de pilas completamente
-dentro del directorio del cargador.
+    import pilas
 
-Puedes verlo con mas detalle en [github][github_pilas].
+A diferencia de los anteriores, [pilas-engine] necesita varios archivos de
+recursos para funcionar correctamente. Vé al directorio donde se encuentra
+el código fuente de [pilas-engine] en tu equipo, y copia el directorio ``data``
+completamente dentro del directorio ``build`` que contiene al cargador (y 
+el archivo ``run.py``)
+
+Ahora sí, ejecutando el cargador obtendremos:
+
+![](/images/cargador_de_juegos/pilas1.png)
+
+y cuando pulsemos el botón "OK" aparecerá:
+
+![](/images/cargador_de_juegos/pilas2.png)
+
+Puedes ver un ejemplo de cargador [pilas-engine] en [github][github_pilas].
 
 [github_pilas]: https://github.com/hugoruscitti/cargador_de_juegos/tree/master/cargador_pilas
+
+
+## Finalizando
+
+Los cargadores de juegos son una gran oportunidad para distribuir juegos y hacerlos mucho mas accesibles a los usuarios.
+
+Espero que este documento te resulte útil, y recuerda que tenemos un repositorio en [github] con la última versión de los cargadores. Estás invitado a participar del desarrollo.
