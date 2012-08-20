@@ -14,8 +14,8 @@ notablemente.
 
 Por suerte hoy logré implementar los cambios que quería,
 le dediqué varias horas pero valió la pena el esfuerzo, quedó
-mucho mejor de lo que esperaba, y en el camino aprendí un
-montón.
+mucho mejor de lo que esperaba, y en el camino aprendí varias cosas
+nuevas.
 
 # ¿Por qué es importante?
 
