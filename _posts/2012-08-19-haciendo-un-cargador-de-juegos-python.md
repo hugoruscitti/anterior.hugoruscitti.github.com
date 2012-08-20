@@ -189,25 +189,26 @@ Puedes verlo con mas detalle en [github][github_pygame].
 
 ## Versión 3: con soporte para Cocos2D
 
-Para crear un cargador especial de [cocos2d] necesitamos instalar [pyglet]
+Para crear un cargador especial de [cocos2d] necesitamos instalar [pyglet], [numpy]
 y luego [cocos2d]:
 
 ![](/images/cargador_de_juegos/pyglet.png)
 
 Una vez concluido el proceso de instalación, tendríamos que volver
-a editar el archivo cargador e incluir a [cocos2d]:
+a editar el archivo ``setup.py`` e incluir a [cocos2d]:
 
+    import cocos
 
-    import cocos2d
-
-
-Y listo, ahora solo queda ejecutar ``crear_ejecutable.bat`` y distribuir nuestro cargador:
+Y listo, ahora solo queda ejecutar ``crear_ejecutable.bat``, copiar el archivo
+``avbin.dll`` de [avbin] dentro del directorio ``build`` y distribuir nuestro cargador:
 
 ![](/images/cargador_de_juegos/cocos2d.png)
 
 
 [cocos2d]: http://cocos2d.org
 [pyglet]: http://www.pyglet.org
+[numpy]: http://pypi.python.org/pypi/numpy
+[avbin]: http://avbin.github.com/AVbin/Download.html
 
 
 Puedes verlo con mas detalle en [github][github_cocos2d].
