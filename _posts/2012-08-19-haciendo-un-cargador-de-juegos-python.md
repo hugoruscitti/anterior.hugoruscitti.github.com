@@ -197,7 +197,8 @@ a editar el archivo ``setup.py`` e incluir a [cocos2d]:
     import cocos
 
 Y listo, ahora solo queda ejecutar ``crear_ejecutable.bat``, copiar el archivo
-``avbin.dll`` de [avbin] dentro del directorio ``build`` y distribuir nuestro cargador:
+``avbin.dll`` de [avbin] dentro del directorio ``build``, agregar todas las imagenes que
+necesite el juego y distribuir nuestro cargador:
 
 ![](/images/cargador_de_juegos/cocos2d.png)
 
