@@ -189,10 +189,7 @@ Puedes verlo con mas detalle en [github][github_pygame].
 
 ## Versión 3: con soporte para Cocos2D
 
-Para crear un cargador especial de [cocos2d] necesitamos instalar [pyglet], [numpy]
-y luego [cocos2d]:
-
-![](/images/cargador_de_juegos/pyglet.png)
+Para crear un cargador especial de [cocos2d] necesitamos instalar [pyglet], [numpy] y luego [cocos2d].
 
 Una vez concluido el proceso de instalación, tendríamos que volver
 a editar el archivo ``setup.py`` e incluir a [cocos2d]:
