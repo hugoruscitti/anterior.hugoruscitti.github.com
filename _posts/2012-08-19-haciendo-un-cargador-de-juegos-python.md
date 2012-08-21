@@ -174,7 +174,7 @@ Hasta ahora, tenemos lo principal del cargador de juegos. Aunque no incluye much
 
 Hagamos un pequeño cambio para agregar soporte a [pygame].
 
-Primero tenemos de asegurarnos de tener instalada la biblioteca [pygame], para nuestra versión de python (2.6) y luego tenemos que editar el archivo cargador y colocar en la primer linea lo siguiente:
+Primero tenemos de asegurarnos de tener instalada la biblioteca [pygame], para nuestra versión de python (2.6) y luego tenemos que editar el archivo ``setup.py`` y colocar en la primer linea lo siguiente:
 
     import pygame
 
@@ -227,7 +227,7 @@ Es importante tener en cuenta que box2D necesita un [pequeño cambio][patch_box2
 [install_pilas]: http://pilas-engine.com.ar/doc/tutoriales/instalacion/windows_xp.rst
 
 Una vez concluido el proceso de instalación, tendríamos que volver
-a editar el archivo ``cargador.py`` e incluir a [pilas-engine]:
+a editar el archivo ``setup.py`` e incluir a [pilas-engine]:
 
     import pilas
 
