@@ -1,9 +1,0 @@
-
-.DS_Store
-*.pyc
-*doit.db.db
-tmp
-
-categories/*
-_site/*
-serve/*
