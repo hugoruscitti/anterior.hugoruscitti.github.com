@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Como crear grillas de sprites con Gimp | examplelab</title>
+  <meta name="author" content="Hugo Ruscitti">
+  
+  <meta name="description" content="En este artículo veremos cómo crear una grilla de
+imágenes para colocar en un videojuego.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Como crear grillas de sprites con Gimp"/>
+  <meta property="og:site_name" content="examplelab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="examplelab" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5829629-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">examplelab</a></h1>
+  <h2><a href="/">mis notas y experimientos</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-01-15T00:00:00.000Z"><a href="/2012/01/14/2012-01-15-como-crear-grillas-de-sprites-con-gimp/">Jan 14 2012</a></time>
+      
+      
+  
+    <h1 class="title">Como crear grillas de sprites con Gimp</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>En este artículo veremos cómo crear una grilla de
+imágenes para colocar en un videojuego.</p>
+<a name="more"></a>
+
+<p>Usaremos <a href="http://www.gimp.org/">gimp</a> junto a unos complementos que escribí
+hace varios meses. Y por último, vamos
+a poner esa grilla en acción usando el motor <a href="http://www.pilas-engine.com.ar">pilas</a></p>
+<h1>Conceptos iniciales</h1>
+<p>Básicamente, una grilla se utiliza en los videojuegos 2D
+para representar todos los cuadros de una animación:</p>
+<p><img src="/images/como-crear-grillas-gimp/special.jpg" alt="image"></p>
+<p>Por ejemplo, en la imagen anterior tenemos 5 cuadros
+de animación en la misma imagen (tomado el juego
+<a href="https://github.com/hugoruscitti/sbfury">sbfury</a> de losersjuegos).</p>
+<p>En un juego tradicional, podrías tener muchos cuadros
+de animación, así que las grillas ayudan a reducir
+la cantidad de imágenes drásticamente. Además, facilitan
+muchísimo la programación.</p>
+<p>Además, las grillas no solo sirven para animaciones
+de personajes, también pueden ser utilizadas para todo
+tipo de imágenes. </p>
+<h1>Herramientas</h1>
+<p>Vamos a usar dos herramientas, una es <a href="http://www.gimp.org/">gimp</a>, un editor
+de imágenes muy popular en Gnu/Linux, y un conjunto
+de plugins:</p>
+<p><img src="/images/como-crear-grillas-gimp/gimp.jpg" alt=""></p>
+<h1>Instalar los plugins</h1>
+<p>Vamos a instalar unas extensiones para <a href="http://www.gimp.org/">gimp</a>. En la
+consola de tu equipo escribí los siguientes comandos:</p>
+<pre><code><figure class="highlight"><pre>cd <span class="preprocessor">.Gimp</span>-<span class="number">2.6</span>/plug-ins/
+
+wget http://www<span class="preprocessor">.losersjuegos</span><span class="preprocessor">.com</span><span class="preprocessor">.ar</span>/_media/software/Gimp/spritetool<span class="preprocessor">.zip</span>
+
+unzip spritetool<span class="preprocessor">.zip</span>
+</pre></figure></code></pre>
+<p>Listo, ahora solo hay que reiniciar <a href="http://www.gimp.org/">gimp</a>.</p>
+<p>Ten en cuenta que hay una descripción mucho mas detallada
+de estos complementos en la <a href="http://www.losersjuegos.com.ar/software/Gimp">página de losersjuegos</a></p>
+<h1>Comencemos</h1>
+<p>Vamos a tomar una imagen con varios cuadros de animación
+y lo vamos a convertir en una grilla.</p>
+<p>Tomemos la imagen de <em>hannias</em>, uno de los enemigos del
+juego <a href="https://github.com/hugoruscitti/sbfury">sbfury</a>:</p>
+<p><img src="/images/como-crear-grillas-gimp/hannias.jpg" alt=""></p>
+<p>Este imagen tiene varios cuadros de animación, pero están
+desorganizados, no los podemos incorporar en el juego
+directamente, necesitamos organizarlo.</p>
+<p>Usando <a href="http://www.gimp.org/">gimp</a>, vamos a copiar y pegar cada una de los cuadros
+que nos interesan en una nueva imagen. Aquí podrías usar
+la opción <em>pegar en nueva imagen</em>.</p>
+<h1>Capas</h1>
+<p>Ten en cuenta que al momento de pegar, <a href="http://www.gimp.org/">gimp</a> <strong>no hace</strong> una nueva
+capa. Tienes que pulsar el botón <code>Nueva capa</code> para que
+esto ocurra.</p>
+<p>Por ejemplo, al pegar la ventana de capas me muestra la selección:</p>
+<p><img src="/images/como-crear-grillas-gimp/pegar.jpg" alt=""></p>
+<p>Pero al momento de pulsar el icono <code>nueva capa</code> aparecen
+las dos capas:</p>
+<p><img src="/images/como-crear-grillas-gimp/pegar_en_capa.jpg" alt=""></p>
+<p>Es importante tener cada cuadro en su propia capa, esto es lo que
+nos va a permitir alinear todos los cuadros de animación y hacerlo
+de manera prolija.</p>
+<p>La ventana de capas de <a href="http://www.gimp.org/">gimp</a> te permitirá organizar las capas, ocultarlas
+o incluso modificar la transparencia (bastante útil a la hora de
+alinear los cuadros).</p>
+<p>Por ejemplo, acá cambié la transparencia de una de las capas para
+lograr la alineación que quería:</p>
+<p><img src="/images/como-crear-grillas-gimp/alpha.jpg" alt=""></p>
+<p>Ten en cuenta que hay dos atajos de teclas
+super útiles:</p>
+<ul>
+<li>La tecla <code>TAB</code> oculta todas las ventanas auxiliares de manera temporal.</li>
+<li>La tecla <code>m</code> te permite seleccionar la herramienta para trabajar con capas, así que luego de pulsar <code>m</code> vas a poder mover las capas con el teclado, usando las flechas direccionales.</li>
+</ul>
+<h2>Arreglo de capas</h2>
+<p>El siguiente paso es hacer que las capas ocupen el área de la
+imagen. Esto se puede hacer pulsando el botón derecho sobre el panel
+de capas y seleccionando <code>capa al tamaño de la imagen</code>. Esto
+se tiene que hacer en cada una de las capas.</p>
+<h2>Generando la grilla</h2>
+<p>Ahora si, podemos activar el plugin para convertir nuestras
+capas en una grilla.</p>
+<p>Pulsa el botón derecho sobre la ventana de la imagen y seleccionar
+<code>Python-fu</code> → <code>SpriteTool</code> → <code>Create Sheet</code>.</p>
+<p>La imagen se va a convertir en un grilla lista para usar:</p>
+<p><img src="/images/como-crear-grillas-gimp/final.jpg" alt=""></p>
+<h2>Haciendo una prueba con pilas</h2>
+<p>Para probar la grilla podemos guardar la imagen cómo un
+archivo <code>png</code> y hacer una prueba usando pilas-engine_:</p>
+<p>Vamos a suponer que nuestro archivo se llama <code>animacion.png</code>, el
+código que nos nos permite ver la animación sería:</p>
+<pre><code><figure class="highlight"><pre><span class="import"><span class="keyword">import</span> pilas</span>
+<span class="title">pilas</span>.iniciar()
+
+<span class="title">grilla</span> = pilas.imagenes.cargar_grilla('animacion.png', <span class="number">3</span>)
+
+<span class="title">animacion</span> = pilas.actores.<span class="type">Animacion</span>(grilla, ciclica=<span class="type">True</span>)
+</pre></figure></code></pre>
+<p>Esta es una imagen de la sesión interactiva de pilas:</p>
+<p><img src="/images/como-crear-grillas-gimp/prueba.jpg" alt=""></p>
+<h2>Conclusión</h2>
+<p>Amigarse con el manejo de grillas en un videojuego es muy
+valioso, hay un montón de trabajo fino que necesitas
+hacer, incluso si solamente te dedicas a la programación.</p>
+<p>Ojalá te animes a tomarle la mano a <a href="http://www.gimp.org/">gimp</a>, es un gran
+programa y se aprende rápido.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/juegos-1/">juegos</a>, <a href="/tags/gimp/">gimp</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:examplelab.com.ar">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/gimp/">gimp</a><small>1</small></li>
+  
+    <li><a href="/tags/juegos-1/">juegos</a><small>1</small></li>
+  
+    <li><a href="/tags/juegos-gimp/">juegos, gimp</a><small>0</small></li>
+  
+    <li><a href="/tags/pilas/">pilas</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
+    <li><a href="/tags/python-windows-1/">python windows</a><small>1</small></li>
+  
+    <li><a href="/tags/python-pilas-sbfury/">python, pilas, sbfury</a><small>0</small></li>
+  
+    <li><a href="/tags/python-windows/">python, windows</a><small>0</small></li>
+  
+    <li><a href="/tags/sbfury/">sbfury</a><small>1</small></li>
+  
+    <li><a href="/tags/tip/">tip</a><small>2</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Hugo Ruscitti
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'examplelab-hexo';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

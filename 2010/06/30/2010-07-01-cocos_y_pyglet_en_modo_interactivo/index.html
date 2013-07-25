@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Cocos y pyglet en modo interactivo | examplelab</title>
+  <meta name="author" content="Hugo Ruscitti">
+  
+  <meta name="description" content="Python tiene una herramienta super interesante para los nuevos programadores: una consola interactiva donde se puede editar, corregir y ejecutar código de manera super sencilla.
+Esto resulta de mucha utilidad cuando quieres dar clases sobre programación o simplemente dar una demostración sobre alguna biblioteca.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Cocos y pyglet en modo interactivo"/>
+  <meta property="og:site_name" content="examplelab"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="examplelab" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5829629-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">examplelab</a></h1>
+  <h2><a href="/">mis notas y experimientos</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-07-01T00:00:00.000Z"><a href="/2010/06/30/2010-07-01-cocos_y_pyglet_en_modo_interactivo/">Jun 30 2010</a></time>
+      
+      
+  
+    <h1 class="title">Cocos y pyglet en modo interactivo</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Python tiene una herramienta super interesante para los nuevos programadores: una consola interactiva donde se puede editar, corregir y ejecutar código de manera super sencilla.</p>
+<p>Esto resulta de mucha utilidad cuando quieres dar clases sobre programación o simplemente dar una demostración sobre alguna biblioteca.
+<a name="more"></a></p>
+<h2>Introducción</h2>
+<p>Lamentablemente la consola de python no se puede usar en cualquier escenario, por ejemplo si quieres dar una demostración de la biblioteca <a href="http://cocos2d.org/">cocos2d</a> desde la consola interactiva se te pueden presentar algunos problemas.</p>
+<p>Mediante este artículo intentaré encontrarle una solución a este problema, y en el camino veremos
+Una aclaración inicial</p>
+<p>Por cierto, <a href="http://cocos2d.org/">cocos2d</a> viene con una consola interactiva que se activa con las teclas <code>&lt;CTRL+I&gt;</code>.</p>
+<p>Esa consola se ve dentro de la misma ventana de la aplicación y te permite hacer casi todo lo que veremos aquí.</p>
+<p>La diferencia entre esa consola, y la que vamos a tratar de implementar aquí es la siguiente: en este artículo busco intergrar la consola de python tradicional, donde se puede copiar, pegar y autocompletar código.</p>
+<h2>Un prototipo de ejemplo para descargar</h2>
+<p>La solución que veremos en este artículo me ha servido para realizar un prototipo de ejemplo.</p>
+<p>Si quieres ir viendo el programa en funcionamiento lo puedes descargar de la siguiente dirección:</p>
+<ul>
+<li><a href="http://examplelab.googlecode.com/hg/interactive_cocos/interactive_cocos.py">http://examplelab.googlecode.com/hg/interactive_cocos/interactive_cocos.py</a></li>
+</ul>
+<p>donde la imagen que utilizo para representar el objeto animado principal está aquí:</p>
+<p><img src="/images/cocos_y_pyglet_en_modo_interactivo/cara.png" alt=""></p>
+<h2>¿Cómo se utiliza el prototipo de consola?</h2>
+<p>Primero tienes que descargar el script de la aplicación y ejecutarlo con el siguiente comando:</p>
+<pre><code><figure class="highlight"><pre><span class="title">python</span> interactive_cocos2d.py
+</pre></figure></code></pre>
+<p>Luego, se abrirá una pantalla con un sprite que podrás manipular:</p>
+<p><img src="/images/cocos_y_pyglet_en_modo_interactivo/screen_cara.png" alt=""></p>
+<p>Por ejemplo, dentro de la consola python tiene dos referencias iniciales: cocos y sprite. Hagamos algo con ellas:</p>
+<pre><code><figure class="highlight"><pre><span class="filename">sprite.rotate = 40
+</pre></figure></code></pre>
+<p>obteniendo:</p>
+<p><img src="/images/cocos_y_pyglet_en_modo_interactivo/rotate.png" alt=""></p>
+<p>Esto es útil para mostrar que el objeto en cuestión tiene atributos, y que se pueden manipular de manera sencilla.</p>
+<p>También puedes ejecutar sentencias como <code>help(cocos)</code> o similares.</p>
+<p>Ahora bien, con este escenario resulta mas interesante hablar sobre una de las características mas lindas que tiene <a href="http://cocos2d.org/">cocos2d</a>, el submódulo actions:</p>
+<pre><code><figure class="highlight"><pre><span class="title">media_vuelta</span> = cocos.actions.<span class="type">RotateBy</span>(<span class="number">180</span>, <span class="number">2</span>)
+<span class="title">giro_completo</span> = media_vuelta * <span class="number">2</span>
+
+<span class="title">sprite</span>.<span class="keyword">do</span>(giro_completo)
+</pre></figure></code></pre>
+<p>Eso mostrará una animación de rotación completa en 4 segundos. Y como ninguna acción detiene nuesta consola de python, podemos incluso seguir escribiendo mienstras se ejecuta la acción.</p>
+<h2>¿Cómo funciona?</h2>
+<p>A continuación veremos paso a paso la implementación del prototipo que se utiliza mas arriba.</p>
+<h2>Objetivo</h2>
+<p>Quisieramos ejecutar nuestro intérprete de python tradicional en primer plano, y que la ventana de la biblioteca <a href="http://cocos2d.org/">cocos2d</a> permanezca en segundo plano.</p>
+<p>Esto nos facilitaría jugar con la biblioteca, conocer sus funciones y manipular sprites de manera interactiva.
+Un primer paso: ¿usamos hilos?</p>
+<p>Como queremos poner en funcionamiento una ventana de <a href="http://cocos2d.org/">cocos2d</a> y al mismo tiempo tener un intérprete, podríamos usar dos hilos: Uno para el interprete que recibe los comandos del usuario y otro para la biblioteca <a href="http://cocos2d.org/">cocos2d</a>.</p>
+<h2>El problema: Hilos y OpenGL</h2>
+<p>Lo malo de este enfoque es que opengl (la biblioteca base debajo de <a href="http://cocos2d.org/">cocos2d</a>) define un contexto y espera que todas las llamadas de opengl se hagan desde el mismo hilo que ha creado el contexto. Y esto es un problema, porque en realidad para nuestro escenario lo ideal sería manipular opengl desde un hilo (la consola) y ver los cambios en otro hilo (el de cocos).</p>
+<p>Entonces, al parecer tenemos como restricción que todo lo que actúa directamente sobre opengl tiene que ejecutarse dentro del mismo hilo que utiliza cocos.</p>
+<h2>El modelo propuesto</h2>
+<p>Podemos tener dos hilos en ejecución, y una cola de mensajes que permite derivar todo el código a ejecutar dentro del hilo de cocos.</p>
+<p>Este es un gráfico de la solución propuesta:</p>
+<p><img src="/images/cocos_y_pyglet_en_modo_interactivo/esquema.png" alt=""></p>
+<h2>Creando un prototipo</h2>
+<p>El programa principal solamente tiene que poner en funcionamiento a los tres componentes juntos:</p>
+<pre><code><figure class="highlight"><pre><span class="preprocessor"># Cola de mensajes que se utiliza para llevar comandos al hilo.</span>
+queue = Queue.Queue()
+
+<span class="preprocessor"># Hilo que ejecuta la funcionalidad de cocos.</span>
+app = Application(queue)
+app.start()
+
+<span class="preprocessor"># Interprete de comandos que envia todas las lineas que se escriben</span>
+<span class="preprocessor"># directamente a la cola de mensajes que consume el hilo.</span>
+cmd = CommandLine(app, queue)
+cmd.cmdloop()
+</pre></figure></code></pre>
+<p>Donde queue es la cola que se utiliza para enviar o delegar todas las cadena de texto que ingresa el usuario.</p>
+<h2>El intérprete</h2>
+<p>Para crear el intérprete que acepta los comandos del usuario he utilizado la clase Cmd del módulo cmd:</p>
+<pre><code><figure class="highlight"><pre><span class="class"><span class="keyword">class</span> <span class="title">CommandLine</span><span class="params">(cmd.Cmd)</span>:</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, app, queue)</span>:</span>
+        cmd.Cmd.__init__(self, <span class="string">'TAB'</span>)
+        self.queue = queue
+        self.app = app
+        self.prompt = <span class="string">"&gt;&gt;&gt; "</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">default</span><span class="params">(self, line)</span>:</span>
+        <span class="string">"Cualquier sentencia la envia a la cola de comandos que consume cocos."</span>
+        self.queue.put(line)
+
+    <span class="function"><span class="keyword">def</span> <span class="title">do_exit</span><span class="params">(self, line)</span>:</span>
+        self.app.kill()
+        sys.exit(<span class="number">0</span>)
+</pre></figure></code></pre>
+<p>La clase Cmd permite crear un intérprete de comandos parecido al original de python, incluido el autocompletado con la tecla TAB.</p>
+<h2>Hilo de cocos</h2>
+<p>El hilo que muestra la ventana de <a href="http://cocos2d.org/">cocos2d</a> solo tiene que mantener una ventana de la biblioteca visible y actualizar con frecuencia el contexto que ejecuta comandos:</p>
+<pre><code><figure class="highlight"><pre><span class="class"><span class="keyword">class</span> <span class="title">Application</span>(<span class="title">threading</span>.<span class="title">Thread</span>):
+
+    <span class="title">def</span> <span class="title">__init__</span>(<span class="title">self</span>, <span class="title">queue</span>):
+        <span class="title">threading</span>.<span class="title">Thread</span>.<span class="title">__init__</span>(<span class="title">self</span>)
+        <span class="title">self</span>.<span class="title">killed</span> = <span class="title">False</span>
+        <span class="title">self</span>.<span class="title">queue</span> = <span class="title">queue</span>
+
+    <span class="title">def</span> <span class="title">run</span>(<span class="title">self</span>):
+        <span class="title">cocos</span>.<span class="title">director</span>.<span class="title">director</span>.<span class="title">init</span>(<span class="title">resizable</span>=<span class="title">False</span>, <span class="title">width</span>=800, <span class="title">height</span>=600)
+        <span class="title">self</span>.<span class="title">scene</span> = <span class="title">cocos</span>.<span class="title">scene</span>.<span class="title">Scene</span>(<span class="title">cocos</span>.<span class="title">layer</span>.<span class="title">ColorLayer</span>(240, 240, 240, 255))
+        <span class="title">sprite</span> = <span class="title">cocos</span>.<span class="title">sprite</span>.<span class="title">Sprite</span>('<span class="title">cara</span>.<span class="title">png</span>')
+        <span class="title">sprite</span>.<span class="title">scale</span> = 2
+        <span class="title">sprite</span>.<span class="title">x</span> = 400
+        <span class="title">sprite</span>.<span class="title">y</span> = 300
+        <span class="title">self</span>.<span class="title">scene</span>.<span class="title">add</span>(<span class="title">sprite</span>)
+
+        # <span class="title">Genera</span> <span class="title">el</span> <span class="title">entorno</span> <span class="title">de</span> <span class="title">la</span> <span class="title">session</span>, <span class="title">y</span> <span class="title">le</span> <span class="title">pasa</span> <span class="title">datos</span> <span class="title">que</span> <span class="title">puede</span>
+        # <span class="title">manipular</span>.
+        <span class="title">self</span>.<span class="title">environment</span> = <span class="title">environment</span>(<span class="title">queue</span>, <span class="title">sprite</span>)
+        <span class="title">self</span>.<span class="title">environment</span>.<span class="title">next</span>()
+
+        <span class="title">self</span>.<span class="title">scene</span>.<span class="title">schedule_interval</span>(<span class="title">self</span>.<span class="title">environment_update</span>, 0.01)
+        <span class="title">cocos</span>.<span class="title">director</span>.<span class="title">director</span>.<span class="title">run</span>(<span class="title">self</span>.<span class="title">scene</span>)
+
+    <span class="title">def</span> <span class="title">environment_update</span>(<span class="title">self</span>, <span class="title">dt</span>):
+        "<span class="title">Mantiene</span> <span class="title">en</span> <span class="title">funcionamiento</span>."
+        <span class="title">self</span>.<span class="title">environment</span>.<span class="title">next</span>()
+
+    <span class="title">def</span> <span class="title">kill</span>(<span class="title">self</span>):
+        <span class="title">self</span>.<span class="title">killed</span> = <span class="title">True</span>
+        <span class="title">pyglet</span>.<span class="title">app</span>.<span class="title">exit</span>()
+</pre></figure></code></pre>
+<h2>Un entorno donde viven las referencias</h2>
+<p>La parte mas importante del sistema es la que se encarga de ejecutar el código que escribimos en consola.</p>
+<p>Para ello he creado un generador, que conoce la cola de donde lee los mensajes que escribimos y los pone en funcionamiento.</p>
+<p>Y dado que se trata de un generador, todo lo que se ejecuta dentro de él se mantiene en la memoria local, representando de alguna manera el contexto o espacio de nombres que buscamos conservar.</p>
+<pre><code><figure class="highlight"><pre><span class="function"><span class="keyword">def</span> <span class="title">environment</span><span class="params">(queue, sprite)</span>:</span>
+    <span class="string">"""Representa la session y las variables locales de la instancia interactiva.
+
+    Este entorno funciona como un generador, con la intension de guardar
+    el estado de todas las variables locales y acceder a los comandos desde
+    la cola."""</span>
+
+    <span class="keyword">while</span> <span class="built_in">True</span>:
+
+        <span class="keyword">try</span>:
+            last = queue.get_nowait()
+
+            <span class="keyword">if</span> last:
+                <span class="keyword">try</span>:
+                    exec(last)
+                <span class="keyword">except</span>:
+                    <span class="keyword">print</span> <span class="string">"Error al ejecutar"</span>, last
+
+        <span class="keyword">except</span> Queue.Empty:
+            <span class="keyword">pass</span>
+
+        <span class="keyword">yield</span> <span class="built_in">None</span>
+</pre></figure></code></pre>
+<p>Nota: Un enfoque similar usan las aplicaciones REPL, donde incluso existe la funcionalidad de reiniciar el contexto cuando hemos hecho algo mal.</p>
+<h2>Conclusión</h2>
+<p>Python ofrece una gran flexibilidad, y si bien creo que la solución al problema planteado se puede mejorar, actualmente puede ser de utilidad para otras personas.</p>
+<p>Personalmente, lo encuentro útil para explicar algunos conceptos de programación mediante un enfoque práctico. Ideas como abstracción, encapsulación o polimorfismo quedan mas claras si se las puede reflejar con un ejemplo visible.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/tip/">tip</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:examplelab.com.ar">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/gimp/">gimp</a><small>1</small></li>
+  
+    <li><a href="/tags/juegos-1/">juegos</a><small>1</small></li>
+  
+    <li><a href="/tags/juegos-gimp/">juegos, gimp</a><small>0</small></li>
+  
+    <li><a href="/tags/pilas/">pilas</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
+    <li><a href="/tags/python-windows-1/">python windows</a><small>1</small></li>
+  
+    <li><a href="/tags/python-pilas-sbfury/">python, pilas, sbfury</a><small>0</small></li>
+  
+    <li><a href="/tags/python-windows/">python, windows</a><small>0</small></li>
+  
+    <li><a href="/tags/sbfury/">sbfury</a><small>1</small></li>
+  
+    <li><a href="/tags/tip/">tip</a><small>2</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Hugo Ruscitti
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'examplelab-hexo';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
